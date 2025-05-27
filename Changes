@@ -1,5 +1,8 @@
 Revision history for Net-CIDR-Set
 
+  [Documentation]
+  - Add missing version and timestamp to Changes for v0.14.
+
 0.14 2025-05-27 16:16:23+01:00 Europe/London
   [Security]
   - CVE-2025-40911: Disallow IPv4 addresses with a leading 0 in the quads, e.g. "010.0.0.1".
