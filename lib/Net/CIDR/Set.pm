@@ -251,8 +251,8 @@ sub _add_range {
 Add a number of addresses or ranges to a set.
 
   $set->add(
-    '10.0.0.0/8', 
-    '192.168.0.32-192.168.0.63', 
+    '10.0.0.0/8',
+    '192.168.0.32-192.168.0.63',
     '127.0.0.1'
   );
 
@@ -685,7 +685,7 @@ in the set in ascending order. This code
   my $set = Net::CIDR::Set->new(
     '192.168.37.9-192.168.37.134',
     '127.0.0.1',
-    '10.0.0.0/8' 
+    '10.0.0.0/8'
   );
   my $iter = $set->iterate_ranges;
   while ( my $range = $iter->() ) {
