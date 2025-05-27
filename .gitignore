@@ -8,6 +8,7 @@
 /MYMETA.yml
 /Makefile
 /Makefile.old
+/Net-CIDR-Set-*
 /Session.vim
 /Set-IntSpan-Fast-*
 /_build*
