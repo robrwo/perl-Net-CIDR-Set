@@ -3,6 +3,8 @@ Revision history for Net-CIDR-Set
   [Documentation]
   - Added a security policy.
 
+  - Updated README from POD.
+
   - Fixed tense in Changes for v0.15.
 
 0.15 2025-05-27 16:33:00+01:00 Europe/London

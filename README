@@ -1,31 +1,333 @@
-Net-CIDR-Set version 0.13
+NAME
+    Net::CIDR::Set - Manipulate sets of IP addresses
 
-INSTALLATION
+VERSION
+    This document describes Net::CIDR::Set version 0.16
 
-To install this module, run the following commands:
+SYNOPSIS
+      use Net::CIDR::Set;
 
-    perl Makefile.PL
-    make
-    make test
-    make install
+      my $priv = Net::CIDR::Set->new( '10.0.0.0/8', '172.16.0.0/12',
+        '192.168.0.0/16' );
+      for my $ip ( @addr ) {
+        if ( $priv->contains( $ip ) ) {
+          print "$ip is private\n";
+        }
+      }
 
+DESCRIPTION
+    "Net::CIDR::Set" represents sets of IP addresses and allows standard set
+    operations (union, intersection, membership test etc) to be performed on
+    them.
 
-Alternatively, to install with Module::Build, you can use the following commands:
+    In spite of the name it can work with sets consisting of arbitrary
+    ranges of IP addresses - not just CIDR blocks.
 
-    perl Build.PL
-    ./Build
-    ./Build test
-    ./Build install
+    Both IPv4 and IPv6 addresses are handled - but they may not be mixed in
+    the same set. You may explicitly set the personality of a set:
 
+      my $ip4set = Net::CIDR::Set->new({ type => 'ipv4 }, '10.0.0.0/8');
 
-DEPENDENCIES
+    Normally this isn't necessary - the set will guess its personality from
+    the first data that is added to it.
 
-    Data::Types
-    List::Util
+INTERFACE
+  "new"
+    Create a new Net::CIDR::Set. All arguments are optional. May be passed a
+    list of list of IP addresses or ranges which, if present, will be passed
+    to "add".
 
-COPYRIGHT AND LICENCE
+    The first argument may be a hash reference which will be inspected for
+    named options. Currently the only option that may be passed is "type"
+    which should be 'ipv4', 'ipv6' or the name of a coder class. See
+    Net::CIDR::Set::IPv4 and Net::CIDR::Set::IPv6 for examples of coder
+    classes.
 
-Copyright (C) 2008, Message Systems
+  "invert"
+    Invert (negate, complement) a set in-place.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+      my $set = Net::CIDR::Set->new;
+      $set->invert;
+
+  "copy"
+    Make a deep copy of a set.
+
+      my $set2 = $set->copy;
+
+  "add"
+    Add a number of addresses or ranges to a set.
+
+      $set->add(
+        '10.0.0.0/8',
+        '192.168.0.32-192.168.0.63',
+        '127.0.0.1'
+      );
+
+    It is legal to add ranges that overlap with each other and/or with the
+    ranges already in the set. Overlapping ranges are merged.
+
+  "remove"
+    Remove a number of addresses or ranges from a set.
+
+      $set->remove(
+        '8.8.0.0/16',
+        '158.152.1.58'
+      );
+
+    There is no requirement that the addresses being removed be members of
+    the set.
+
+  "merge"
+    Merge the contents of other sets into this set.
+
+      $set = Net::CIDR::Set->new;
+      $set->merge($s1, $s2);
+
+  "contains"
+    A synonmym for "contains_all".
+
+  "contains_all"
+    Return true if the set contains all of the supplied addresses. Given
+    this set:
+
+      my $set = Net::CIDR::Set->new('244.188.12.0/8');
+
+    this condition is true:
+
+      if ( $set->contains_all('244.188.12.128/3') ) {
+        # ...
+      }
+
+    while this condition is false:
+
+      if ( $set->contains_all('244.188.12.0/12') ) {
+        # ...
+      }
+
+  "contains_any"
+    Return true if there is any overlap between the supplied
+    addresses/ranges and the contents of the set.
+
+  "complement"
+    Return a new set that is the complement of this set.
+
+      my $inv = $set->complement;
+
+  "union"
+    Return a new set that is the union of a number of sets. This is
+    equivalent to a logical OR between sets.
+
+      my $everything = $east->union($west);
+
+  "intersection"
+    Return a new set that is the intersection of a number of sets. This is
+    equivalent to a logical AND between sets.
+
+      my $overlap = $north->intersection($south);
+
+  "xor"
+    Return a new set that is the exclusive-or of existing sets.
+
+      my $xset = $this->xor($that);
+
+    The resulting set will contain all addresses that are members of one set
+    but not the other.
+
+  "diff"
+    Return a new set containing all the addresses that are present in this
+    set but not another.
+
+      my $diff = $this->diff($that);
+
+  "is_empty"
+    Return a true value if the set is empty.
+
+      if ( $set->is_empty ) {
+        print "Nothing there!\n";
+      }
+
+  "superset"
+    Return true if this set is a superset of the supplied set.
+
+  "subset"
+    Return true if this set is a subset of the supplied set.
+
+  "equals"
+    Return true if this set is identical to another set.
+
+      if ( $set->equals($foo) ) {
+        print "We have the same addresses.\n";
+      }
+
+Retrieving Set Contents
+    The following methods allow the contents of a set to be retrieved in
+    various representations. Each of the following methods accepts an
+    optional numeric argument that controls the formatting of the returned
+    addresses. It may take one of the following values:
+
+    0   Format each range of addresses as compactly as possible. If the
+        range contains only a single address format it as such. If it can be
+        represented as a single CIDR block use CIDR representation
+        (<ip>/<mask>) otherwise format it as an arbitrary range
+        (<start>-<end>).
+
+    1   Always format as either a CIDR block or an arbitrary range even if
+        the range is just a single address.
+
+    2   Always use arbitrary range format (<start>-<end>) even if the range
+        is a single address or a legal CIDR block.
+
+    Here's an example of the different formatting options:
+
+      my $set = Net::CIDR::Set->new( '127.0.0.1', '192.168.37.0/24',
+        '10.0.0.11-10.0.0.17' );
+
+      for my $fmt ( 0 .. 2 ) {
+        print "Using format $fmt:\n";
+        print "  $_\n" for $set->as_range_array( $fmt );
+      }
+
+    And here's the output from that code:
+
+      Using format 0:
+        10.0.0.11-10.0.0.17
+        127.0.0.1
+        192.168.37.0/24
+      Using format 1:
+        10.0.0.11-10.0.0.17
+        127.0.0.1/32
+        192.168.37.0/24
+      Using format 2:
+        10.0.0.11-10.0.0.17
+        127.0.0.1-127.0.0.1
+        192.168.37.0-192.168.37.255
+
+    Note that this option never affects the addresses that are returned;
+    only how they are formatted.
+
+    For most purposes the formatting argument can be omitted; it's default
+    value is 0 which provides the most general formatting.
+
+  "iterate_addresses"
+    Return an iterator (a closure) that will return each of the addresses in
+    the set in ascending order. This code
+
+      my $set = Net::CIDR::Set->new('192.168.37.0/24');
+      my $iter = $set->iterate_addresses;
+      while ( my $ip = $iter->() ) {
+        print "Got $ip\n";
+      }
+
+    outputs 256 distinct addresses from 192.168.37.0 to 192.168.27.255.
+
+  "iterate_cidr"
+    Return an iterator (a closure) that will return each of the CIDR blocks
+    in the set in ascending order. This code
+
+      my $set = Net::CIDR::Set->new('192.168.37.9-192.168.37.134');
+      my $iter = $set->iterate_cidr;
+      while ( my $cidr = $iter->() ) {
+        print "Got $cidr\n";
+      }
+
+    outputs
+
+      Got 192.168.37.9
+      Got 192.168.37.10/31
+      Got 192.168.37.12/30
+      Got 192.168.37.16/28
+      Got 192.168.37.32/27
+      Got 192.168.37.64/26
+      Got 192.168.37.128/30
+      Got 192.168.37.132/31
+      Got 192.168.37.134
+
+    This is the most compact CIDR representation of the set because its
+    limits don't fall on convenient CIDR boundaries.
+
+  "iterate_ranges"
+    Return an iterator (a closure) that will return each of the ranges in
+    the set in ascending order. This code
+
+      my $set = Net::CIDR::Set->new(
+        '192.168.37.9-192.168.37.134',
+        '127.0.0.1',
+        '10.0.0.0/8'
+      );
+      my $iter = $set->iterate_ranges;
+      while ( my $range = $iter->() ) {
+        print "Got $range\n";
+      }
+
+    outputs
+
+      Got 10.0.0.0/8
+      Got 127.0.0.1
+      Got 192.168.37.9-192.168.37.134
+
+  "as_array"
+    Convenience method that gathers all of the output from one of the
+    iterators above into an array.
+
+      my @ranges = $set->as_array( $set->iterate_ranges );
+
+    Normally you will use one of "as_address_array", "as_cidr_array" or
+    "as_range_array" instead.
+
+  "as_address_array"
+    Return an array containing all of the distinct addresses in a set. Note
+    that this may very easily create a very large array. At the time of
+    writing it is, for example, unlikely that you have enough memory for an
+    array containing all of the possible IPv6 addresses...
+
+  "as_cidr_array"
+    Return an array containing all of the distinct CIDR blocks in a set.
+
+  "as_range_array"
+    Return an array containing all of the ranges in a set.
+
+  "as_string"
+    Return a compact string representation of a set.
+
+AUTHOR
+    Andy Armstrong
+
+    Maintained by Robert Rothenberg <rrwo@cpan.org>
+
+CREDITS
+    The encode and decode routines were stolen en masse from Douglas
+    Wilson's Net::CIDR::Lite.
+
+LICENCE AND COPYRIGHT
+    This module is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself. See perlartistic.
+
+    Copyright (c) 2009, 2014, 2025, Message Systems, Inc. All rights
+    reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright
+          notice, this list of conditions and the following disclaimer in
+          the documentation and/or other materials provided with the
+          distribution.
+        * Neither the name Message Systems, Inc. nor the names of its
+          contributors may be used to endorse or promote products derived
+          from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+    IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+    TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+    PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+    OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
