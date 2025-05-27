@@ -794,7 +794,7 @@ Wilson's L<Net::CIDR::Lite>.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-Copyright (c) 2009, Message Systems, Inc.
+Copyright (c) 2009, 2014, 2025, Message Systems, Inc.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or
