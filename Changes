@@ -4,6 +4,9 @@ Revision history for Net-CIDR-Set
   [Documentation]
   - Reversed the order of the Changes file to most-recent first.
 
+  [Other]
+  - Fixed minor typos in the MANIFEST.SKIP.
+
 0.13  2014-02-24
   - Applied Brian Gottreu's fix for
     https://rt.cpan.org/Public/Bug/Display.html?id=49632

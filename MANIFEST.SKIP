@@ -49,8 +49,8 @@
 \.tmproj$
 \.tar\.gz$
 \B\.svn\b
-.swp$
-.vim$
+\.swp$
+\.vim$
 ^\.cvsignore
 
 # Makemaker generated files and dirs.
