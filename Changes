@@ -1,6 +1,9 @@
 Revision history for Net-CIDR-Set
 
 {{$NEXT}}
+  [Security]
+  - Disallow IPv4 addresses with a leading 0 in the quads, e.g. "010.0.0.1".
+
   [Documentation]
   - Updated the current maintainer to Robert Rothenberg <rrwo@cpan.org>.
 

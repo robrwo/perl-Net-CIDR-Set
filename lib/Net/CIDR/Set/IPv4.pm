@@ -22,7 +22,7 @@ sub _pack {
   my @nums = split /[.]/, shift, -1;
   return unless @nums == 4;
   for ( @nums ) {
-    return unless /^\d{1,3}$/ and $_ < 256;
+    return unless /^\d{1,3}$/ and !/^0\d{1,2}$/ and $_ < 256;
   }
   return pack "CC*", 0, @nums;
 }
