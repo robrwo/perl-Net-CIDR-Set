@@ -139,7 +139,7 @@ __END__
 
 =head1 AUTHOR
 
-Andy Armstrong  C<< <andy.armstrong@messagesystems.com> >>
+Andy Armstrong
 
 Maintained by Robert Rothenberg <rrwo@cpan.org>
 
