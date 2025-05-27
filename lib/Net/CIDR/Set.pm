@@ -8,7 +8,7 @@ use Net::CIDR::Set::IPv6;
 
 use overload '""' => 'as_string';
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Net::CIDR::Set - Manipulate sets of IP addresses
 
 =head1 VERSION
 
-This document describes Net::CIDR::Set version 0.13
+This document describes Net::CIDR::Set version 0.14
 
 =head1 SYNOPSIS
 

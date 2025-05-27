@@ -10,11 +10,11 @@ Nset::CIDR::Set::IPv6 - Encode / decode IPv6 addresses
 
 =head1 VERSION
 
-This document describes Net::CIDR::Set::IPv6 version 0.13
+This document describes Net::CIDR::Set::IPv6 version 0.14
 
 =cut
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 sub new { bless \my $x, shift }
 
