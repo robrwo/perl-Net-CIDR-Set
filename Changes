@@ -3,14 +3,16 @@ Revision history for Net-CIDR-Set
   [Documentation]
   - Added a security policy.
 
+  - Fixed tense in Changes for v0.15.
+
 0.15 2025-05-27 16:33:00+01:00 Europe/London
   [Documentation]
-  - Add missing version and timestamp to Changes for v0.14.
+  - Added missing version and timestamp to Changes for v0.14.
 
   [Other]
-  - Re-release due to possible bad signature.
+  - Re-released due to possible bad signature.
 
-  - Fix MANIFEST.
+  - Fixed MANIFEST.
 
 0.14 2025-05-27 16:16:23+01:00 Europe/London
   [Security]
