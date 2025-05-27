@@ -12,6 +12,10 @@ Revision history for Net-CIDR-Set
   [Other]
   - Fixed minor typos in the MANIFEST.SKIP.
 
+  - Switch to Makefile.PL for building.
+
+  - Sign the distribution.
+
 0.13  2014-02-24
   - Applied Brian Gottreu's fix for
     https://rt.cpan.org/Public/Bug/Display.html?id=49632
