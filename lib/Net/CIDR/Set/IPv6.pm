@@ -141,6 +141,8 @@ __END__
 
 Andy Armstrong  C<< <andy.armstrong@messagesystems.com> >>
 
+Maintained by Robert Rothenberg <rrwo@cpan.org>
+
 =head1 LICENCE AND COPYRIGHT
 
 This module is free software; you can redistribute it and/or

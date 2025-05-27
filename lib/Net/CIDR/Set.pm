@@ -782,6 +782,8 @@ __END__
 
 Andy Armstrong  C<< <andy.armstrong@messagesystems.com> >>
 
+Maintained by Robert Rothenberg <rrwo@cpan.org>
+
 =head1 CREDITS
 
 The encode and decode routines were stolen en masse from Douglas
