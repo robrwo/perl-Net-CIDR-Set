@@ -10,11 +10,11 @@ Net::CIDR::Set::IPv4 - Encode / decode IPv4 addresses
 
 =head1 VERSION
 
-This document describes Net::CIDR::Set::IPv4 version 0.15
+This document describes Net::CIDR::Set::IPv4 version 0.16
 
 =cut
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 
 sub new { bless \my $x, shift }
 
