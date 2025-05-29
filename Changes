@@ -7,6 +7,9 @@ Revision history for Net-CIDR-Set
 
   - Fixed tense in Changes for v0.15.
 
+  [Tests]
+  - t/pod.t only runs as an author test.
+
 0.15 2025-05-27 16:33:00+01:00 Europe/London
   [Documentation]
   - Added missing version and timestamp to Changes for v0.14.

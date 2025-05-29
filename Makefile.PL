@@ -16,6 +16,7 @@ WriteMakefile(
     },
     TEST_REQUIRES => {
         'Test::More' => 0,
+        'Test2::Require::AuthorTesting',
     },
     'INSTALLDIRS' => 'site',
     'EXE_FILES'   => [],
