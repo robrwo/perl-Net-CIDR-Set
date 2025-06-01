@@ -10,6 +10,9 @@ Revision history for Net-CIDR-Set
   [Tests]
   - t/pod.t only runs as an author test.
 
+  [Other]
+  - Removed unnecessary files from the repo and distribution.
+
 0.15 2025-05-27 16:33:00+01:00 Europe/London
   [Documentation]
   - Added missing version and timestamp to Changes for v0.14.
