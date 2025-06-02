@@ -4,6 +4,8 @@ use warnings;
 use strict;
 use Carp;
 
+use namespace::autoclean;
+
 # ABSTRACT: Encode / decode IPv6 addresses
 
 our $VERSION = '0.16';

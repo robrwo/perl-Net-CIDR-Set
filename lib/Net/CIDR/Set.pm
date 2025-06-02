@@ -11,6 +11,8 @@ use Net::CIDR::Set::IPv6;
 
 use overload '""' => 'as_string';
 
+use namespace::autoclean;
+
 our $VERSION = '0.16';
 
 =head1 SYNOPSIS

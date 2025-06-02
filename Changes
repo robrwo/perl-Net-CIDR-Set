@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  [Bug Fixes]
+  - Imports are removed from the namespace.
+
   [Documentation]
   - Modernised POD.
 
