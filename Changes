@@ -4,6 +4,8 @@ Revision history for {{$dist->name}}
   [Bug Fixes]
   - Imports are removed from the namespace.
 
+  - Removed unused variable.
+
   [Documentation]
   - Modernised POD.
 

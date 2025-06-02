@@ -138,7 +138,7 @@ sub _guess_coder {
   my ( $self, $ip ) = @_;
   for my $class ( qw( Net::CIDR::Set::IPv4 Net::CIDR::Set::IPv6 ) ) {
     my $coder = $class->new;
-    my @rep = eval { $coder->encode( $ip ) };
+    ( eval { $coder->encode( $ip ) } );
     return $coder unless $@;
   }
   croak "Can't decode $ip as an IPv4 or IPv6 address";
