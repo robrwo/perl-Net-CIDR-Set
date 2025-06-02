@@ -150,7 +150,7 @@ sub _encode {
 
 {
   for my $dele ( qw( _decode _nbits ) ) {
-    no strict 'refs';
+    no strict 'refs'; ## no critic (ProhibitNoStrict)
     ( my $meth = $dele ) =~ s/^_//;
     *{$dele} = sub {
       my $self = shift;
