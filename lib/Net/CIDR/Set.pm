@@ -1,7 +1,10 @@
 package Net::CIDR::Set;
 
-use warnings;
+# ABSTRACT: Manipulate sets of IP addresses
+
 use strict;
+use warnings;
+
 use Carp qw( croak confess );
 use Net::CIDR::Set::IPv4;
 use Net::CIDR::Set::IPv6;
@@ -9,14 +12,6 @@ use Net::CIDR::Set::IPv6;
 use overload '""' => 'as_string';
 
 our $VERSION = '0.16';
-
-=head1 NAME
-
-Net::CIDR::Set - Manipulate sets of IP addresses
-
-=head1 VERSION
-
-This document describes Net::CIDR::Set version 0.16
 
 =head1 SYNOPSIS
 
@@ -47,19 +42,21 @@ the same set. You may explicitly set the personality of a set:
 Normally this isn't necessary - the set will guess its personality from
 the first data that is added to it.
 
-=head1 INTERFACE
+=attr type
 
-=head2 C<< new >>
+Either C<ipv4>, C<ipv6> or the name of a coder class.
+
+See L<Net::CIDR::Set::IPv4> and L<Net::CIDR::Set::IPv6> for examples of
+coder classes.
+
+=method new
 
 Create a new Net::CIDR::Set. All arguments are optional. May be passed a
 list of list of IP addresses or ranges which, if present, will be
-passed to C<add>.
+passed to L</add>.
 
 The first argument may be a hash reference which will be inspected for
-named options. Currently the only option that may be passed is C<type>
-which should be 'ipv4', 'ipv6' or the name of a coder class. See
-L<Net::CIDR::Set::IPv4> and L<Net::CIDR::Set::IPv6> for examples of
-coder classes.
+named options. Currently the only option that may be passed is L</type>.
 
 =cut
 
@@ -185,7 +182,7 @@ sub _check_and_coerce {
   return $self;
 }
 
-=head2 C<< invert >>
+=method invert
 
 Invert (negate, complement) a set in-place.
 
@@ -220,7 +217,7 @@ sub invert {
   }
 }
 
-=head2 C<< copy >>
+=method copy
 
 Make a deep copy of a set.
 
@@ -246,7 +243,7 @@ sub _add_range {
   splice @{ $self->{ranges} }, $fpos, $tpos - $fpos, ( $from, $to );
 }
 
-=head2 C<< add >>
+=method add
 
 Add a number of addresses or ranges to a set.
 
@@ -270,7 +267,7 @@ sub add {
   }
 }
 
-=head2 C<< remove >>
+=method remove
 
 Remove a number of addresses or ranges from a set.
 
@@ -292,7 +289,7 @@ sub remove {
   $self->invert;
 }
 
-=head2 C<< merge >>
+=method merge
 
 Merge the contents of other sets into this set.
 
@@ -315,11 +312,11 @@ sub merge {
   }
 }
 
-=head2 C<< contains >>
+=method contains
 
 A synonmym for C<contains_all>.
 
-=head2 C<< contains_all >>
+=method contains_all
 
 Return true if the set contains all of the supplied addresses.
 Given this set:
@@ -348,7 +345,7 @@ sub contains_all {
   return $class->new( @_ )->subset( $self );
 }
 
-=head2 C<< contains_any >>
+=method contains_any
 
 Return true if there is any overlap between the supplied
 addresses/ranges and the contents of the set.
@@ -379,7 +376,7 @@ sub compliment {
   croak "That's very kind of you - but I expect you meant complement";
 }
 
-=head2 C<< complement >>
+=method complement
 
 Return a new set that is the complement of this set.
 
@@ -394,7 +391,7 @@ sub complement {
   return $new;
 }
 
-=head2 C<< union >>
+=method union
 
 Return a new set that is the union of a number of sets. This is
 equivalent to a logical OR between sets.
@@ -409,7 +406,7 @@ sub union {
   return $new;
 }
 
-=head2 C<< intersection >>
+=method intersection
 
 Return a new set that is the intersection of a number of sets. This is
 equivalent to a logical AND between sets.
@@ -427,7 +424,7 @@ sub intersection {
   return $new;
 }
 
-=head2 C<< xor >>
+=method xor
 
 Return a new set that is the exclusive-or of existing sets.
 
@@ -444,7 +441,7 @@ sub xor {
    ->intersection( $self->intersection( @_ )->complement );
 }
 
-=head2 C<< diff >>
+=method diff
 
 Return a new set containing all the addresses that are present in this
 set but not another.
@@ -459,7 +456,7 @@ sub diff {
   return $self->intersection( $other->union( @_ )->complement );
 }
 
-=head2 C<< is_empty >>
+=method is_empty
 
 Return a true value if the set is empty.
 
@@ -474,7 +471,7 @@ sub is_empty {
   return @{ $self->{ranges} } == 0;
 }
 
-=head2 C<< superset >>
+=method superset
 
 Return true if this set is a superset of the supplied set.
 
@@ -485,7 +482,7 @@ sub superset {
   return $other->subset( reverse( @_ ) );
 }
 
-=head2 C<< subset >>
+=method subset
 
 Return true if this set is a subset of the supplied set.
 
@@ -497,7 +494,7 @@ sub subset {
   return $self->equals( $self->intersection( $other ) );
 }
 
-=head2 C<< equals >>
+=method equals
 
 Return true if this set is identical to another set.
 
@@ -593,7 +590,7 @@ only how they are formatted.
 For most purposes the formatting argument can be omitted; it's default
 value is C<0> which provides the most general formatting.
 
-=head2 C<< iterate_addresses >>
+=method iterate_addresses
 
 Return an iterator (a closure) that will return each of the addresses in
 the set in ascending order. This code
@@ -623,7 +620,7 @@ sub iterate_addresses {
   };
 }
 
-=head2 C<< iterate_cidr >>
+=method iterate_cidr
 
 Return an iterator (a closure) that will return each of the CIDR blocks
 in the set in ascending order. This code
@@ -677,7 +674,7 @@ sub iterate_cidr {
   };
 }
 
-=head2 C<< iterate_ranges >>
+=method iterate_ranges
 
 Return an iterator (a closure) that will return each of the ranges
 in the set in ascending order. This code
@@ -709,7 +706,7 @@ sub iterate_ranges {
   };
 }
 
-=head2 C<< as_array >>
+=method as_array
 
 Convenience method that gathers all of the output from one of the
 iterators above into an array.
@@ -730,7 +727,7 @@ sub as_array {
   return @addr;
 }
 
-=head2 C<< as_address_array >>
+=method as_address_array
 
 Return an array containing all of the distinct addresses in a set. Note
 that this may very easily create a very large array. At the time of
@@ -744,7 +741,7 @@ sub as_address_array {
   return $self->as_array( $self->iterate_addresses( @_ ) );
 }
 
-=head2 C<< as_cidr_array >>
+=method as_cidr_array
 
 Return an array containing all of the distinct CIDR blocks in a set.
 
@@ -755,7 +752,7 @@ sub as_cidr_array {
   return $self->as_array( $self->iterate_cidr( @_ ) );
 }
 
-=head2 C<< as_range_array >>
+=method as_range_array
 
 Return an array containing all of the ranges in a set.
 
@@ -766,7 +763,7 @@ sub as_range_array {
   return $self->as_array( $self->iterate_ranges( @_ ) );
 }
 
-=head2 C<< as_string >>
+=method as_string
 
 Return a compact string representation of a set.
 
@@ -778,47 +775,18 @@ sub as_string { join ', ', shift->as_range_array( @_ ) }
 
 __END__
 
-=head1 AUTHOR
+=head1 append:AUTHOR
 
-Andy Armstrong
+The current maintainer is Robert Rothenberg <rrwo@cpan.org>.
 
-Maintained by Robert Rothenberg <rrwo@cpan.org>
+The encode and decode routines were stolen en masse from Douglas Wilson's L<Net::CIDR::Lite>.
 
-=head1 CREDITS
+=head1 append:BUGS
 
-The encode and decode routines were stolen en masse from Douglas
-Wilson's L<Net::CIDR::Lite>.
+=head2 Reporting Security Vulnerabilities
 
-=head1 LICENCE AND COPYRIGHT
+Security issues should not be reported on the bugtracker website. Please see F<SECURITY.md> for instructions how to
+report security vulnerabilities
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
 
-Copyright (c) 2009, 2014, 2025, Message Systems, Inc.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or
-without modification, are permitted provided that the following
-conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in
-      the documentation and/or other materials provided with the
-      distribution.
-    * Neither the name Message Systems, Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
-IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
-OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+=cut
