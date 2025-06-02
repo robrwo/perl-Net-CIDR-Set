@@ -378,6 +378,8 @@ sub compliment {
   croak "That's very kind of you - but I expect you meant complement";
 }
 
+=for Pod::Coverage compliment
+
 =method complement
 
 Return a new set that is the complement of this set.

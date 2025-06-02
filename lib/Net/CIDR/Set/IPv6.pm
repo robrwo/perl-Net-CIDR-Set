@@ -129,3 +129,13 @@ sub decode {
 sub nbits { 128 }
 
 1;
+
+=for Pod::Coverage new
+
+=for Pod::Coverage encode
+
+=for Pod::Coverage decode
+
+=for Pod::Coverage nbits
+
+=cut
