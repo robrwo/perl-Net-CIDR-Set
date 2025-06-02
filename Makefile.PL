@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-
+use 5.006000;
 
 use ExtUtils::MakeMaker;
 
@@ -18,6 +18,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Net-CIDR-Set",
   "LICENSE" => "perl",
+  "MIN_PERL_VERSION" => "5.006000",
   "NAME" => "Net::CIDR::Set",
   "PREREQ_PM" => {
     "Carp" => 0,

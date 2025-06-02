@@ -2,6 +2,8 @@ package Net::CIDR::Set;
 
 # ABSTRACT: Manipulate sets of IP addresses
 
+use v5.6;
+
 use strict;
 use warnings;
 
