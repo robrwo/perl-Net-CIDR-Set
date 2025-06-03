@@ -411,7 +411,7 @@ The encode and decode routines were stolen en masse from Douglas Wilson's [Net::
 
 # CONTRIBUTORS
 
-- Brian Gottreu <gottreu@gmail.com>
+- Brian Gottreu <gottreu@cpan.org>
 - Robert Rothenberg <rrwo@cpan.org>
 - Stig Palmquist <stigtsp@cpan.org>
 
