@@ -794,5 +794,4 @@ The encode and decode routines were stolen en masse from Douglas Wilson's L<Net:
 Security issues should not be reported on the bugtracker website. Please see F<SECURITY.md> for instructions how to
 report security vulnerabilities
 
-
 =cut
