@@ -318,7 +318,7 @@ sub merge {
 
 =method contains
 
-A synonmym for C<contains_all>.
+A synonym for C<contains_all>.
 
 =method contains_all
 

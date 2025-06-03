@@ -116,7 +116,7 @@ $set->merge($s1, $s2);
 
 ## contains
 
-A synonmym for `contains_all`.
+A synonym for `contains_all`.
 
 ## contains\_all
 
