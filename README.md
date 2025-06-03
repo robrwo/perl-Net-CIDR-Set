@@ -4,7 +4,7 @@ Net::CIDR::Set - Manipulate sets of IP addresses
 
 # VERSION
 
-version 0.16
+version 0.17
 
 # SYNOPSIS
 

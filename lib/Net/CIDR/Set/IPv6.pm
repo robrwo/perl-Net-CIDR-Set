@@ -8,7 +8,7 @@ use namespace::autoclean;
 
 # ABSTRACT: Encode / decode IPv6 addresses
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 sub new { bless \my $x, shift }
 
