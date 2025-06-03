@@ -1,17 +1,24 @@
-Revision history for Net-CIDR-Set
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
+  [Bug Fixes]
+  - Imports are removed from the namespace.
+
+  - Removed unused variable.
 
   [Documentation]
+  - Modernised POD.
+
   - Added a security policy.
 
   - Updated README from POD.
 
   - Fixed tense in Changes for v0.15.
 
-  [Tests]
-  - t/pod.t only runs as an author test.
-
   [Other]
   - Removed unnecessary files from the repo and distribution.
+
+  - Fixed issues with MANIFEST.SKIP.
 
 0.15 2025-05-27 16:33:00+01:00 Europe/London
   [Documentation]

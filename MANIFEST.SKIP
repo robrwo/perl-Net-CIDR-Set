@@ -12,7 +12,6 @@
 \bMakeMaker-\d
 \bpm_to_blib$
 \bblibdirs$
-^MANIFEST\.SKIP$
 
 # Avoid VMS specific Makmaker generated files
 \bDescrip.MMS$
@@ -31,7 +30,6 @@
 \bcover_db
 
 # Avoid temp and backup files.
-~$
 \.tmp$
 \.old$
 \.bak$
@@ -48,13 +46,11 @@
 \bNet-CIDR-Set-[\d\.\_]+
 \.tmproj$
 \.tar\.gz$
-\B\.svn\b
 \.swp$
 \.vim$
 ^\.cvsignore
 
 # Makemaker generated files and dirs.
-^MANIFEST\.
 ^Makefile$
 ^andy/
 ^blib/
