@@ -18,6 +18,8 @@ Revision history for {{$dist->name}}
   [Other]
   - Removed unnecessary files from the repo and distribution.
 
+  - Fixed issues with MANIFEST.SKIP.
+
 0.15 2025-05-27 16:33:00+01:00 Europe/London
   [Documentation]
   - Added missing version and timestamp to Changes for v0.14.
