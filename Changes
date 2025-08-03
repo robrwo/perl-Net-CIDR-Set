@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.17      2025-08-03 11:39:29+01:00 Europe/London
   [Incompatabilities]
   - This module now requires Perl v5.14 or later.
 
