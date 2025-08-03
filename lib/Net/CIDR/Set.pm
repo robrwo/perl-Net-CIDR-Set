@@ -785,7 +785,7 @@ The current maintainer is Robert Rothenberg <rrwo@cpan.org>.
 
 The encode and decode routines were stolen en masse from Douglas Wilson's L<Net::CIDR::Lite>.
 
-=head1 prepent:SUPPORT
+=head1 prepend:SUPPORT
 
 Only the latest version of this module will be supported.
 

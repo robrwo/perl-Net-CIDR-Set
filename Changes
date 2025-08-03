@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  [Documentation]
+  - Fixed broken Pod::Weaver configuration.
 
 0.17      2025-08-03 11:39:29+01:00 Europe/London
   [Incompatabilities]
