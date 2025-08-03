@@ -2,9 +2,7 @@ package Net::CIDR::Set;
 
 # ABSTRACT: Manipulate sets of IP addresses
 
-use v5.6;
-
-use strict;
+use v5.14;
 use warnings;
 
 use Carp qw( croak confess );
@@ -153,7 +151,7 @@ sub _encode {
 {
   for my $dele ( qw( _decode _nbits ) ) {
     no strict 'refs'; ## no critic (ProhibitNoStrict)
-    ( my $meth = $dele ) =~ s/^_//;
+    my $meth = $dele =~ s/^_//r;
     *{$dele} = sub {
       my $self = shift;
       my $cdr = $self->{coder} || croak "Don't know how to $meth yet";
@@ -791,7 +789,7 @@ The encode and decode routines were stolen en masse from Douglas Wilson's L<Net:
 
 Only the latest version of this module will be supported.
 
-This module requires Perl v5.6 or later.
+This module requires Perl v5.14 or later.
 Future releases may only support Perl versions released in the last ten (10) years.
 
 =head1 append:SUPPORT
