@@ -8,7 +8,7 @@ use namespace::autoclean;
 
 # ABSTRACT: Encode / decode IPv4 addresses
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
 sub new { bless \my $x, shift }
 
