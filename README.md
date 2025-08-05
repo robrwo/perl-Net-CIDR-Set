@@ -41,6 +41,7 @@ Changes for version 0.19 (2025-08-05)
 
 - Documentation
     - Removed the separate INSTALL file.
+    - Fixed the CONTRIBUTORS setion of the README.
 
 See the `Changes` file for more details.
 
@@ -123,6 +124,10 @@ The current maintainer is Robert Rothenberg <rrwo@cpan.org>.
 The encode and decode routines were stolen en masse from Douglas Wilson's [Net::CIDR::Lite](https://metacpan.org/pod/Net%3A%3ACIDR%3A%3ALite).
 
 # CONTRIBUTORS
+
+- Brian Gottreu <gottreu@cpan.org>
+- Robert Rothenberg <rrwo@cpan.org>
+- Stig Palmquist <stigtsp@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
