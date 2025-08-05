@@ -37,10 +37,10 @@ the first data that is added to it.
 
 # RECENT CHANGES
 
-Changes for version 0.18 (2025-08-03)
+Changes for version 0.19 (2025-08-05)
 
 - Documentation
-    - Fixed broken Pod::Weaver configuration.
+    - Removed the separate INSTALL file.
 
 See the `Changes` file for more details.
 
@@ -88,7 +88,7 @@ dzil test
 dzil install --install-command="cpan ."
 ```
 
-For more information, see the `INSTALL` file included with this distribution.
+For more information, see [How to install CPAN modules](https://www.cpan.org/modules/INSTALL.html).
 
 # SUPPORT
 

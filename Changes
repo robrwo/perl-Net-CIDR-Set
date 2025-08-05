@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  [Documentation]
+  - Removed the separate INSTALL file.
 
 0.18      2025-08-03 11:45:07+01:00 Europe/London
   [Documentation]
