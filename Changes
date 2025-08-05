@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  [Documentation]
+  - Mentioned CONTRIBUTING.md in SOURCE.
 
 0.19      2025-08-05 13:11:19+01:00 Europe/London
   [Documentation]

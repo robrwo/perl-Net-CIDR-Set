@@ -37,13 +37,10 @@ the first data that is added to it.
 
 # RECENT CHANGES
 
-Changes for version 0.19 (2025-08-05)
+Changes for version 0.20 (2025-08-05)
 
 - Documentation
-    - Fixed typos in documentation RT#168697 (thanks Thomas Eckardt).
-    - Removed the separate INSTALL file.
-    - Fixed the CONTRIBUTORS setion of the README.
-    - Added CONTRIBUTING.md file.
+    - Mentioned CONTRIBUTING.md in SOURCE.
 
 See the `Changes` file for more details.
 
@@ -116,6 +113,8 @@ then see `SECURITY.md` for instructions how to report security vulnerabilities.
 
 The development version is on github at [https://github.com/robrwo/perl-Net-CIDR-Set](https://github.com/robrwo/perl-Net-CIDR-Set)
 and may be cloned from [git://github.com/robrwo/perl-Net-CIDR-Set.git](git://github.com/robrwo/perl-Net-CIDR-Set.git)
+
+See `CONTRIBUTING.md` for more information.
 
 # AUTHOR
 
