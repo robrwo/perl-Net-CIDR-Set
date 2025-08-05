@@ -42,6 +42,7 @@ Changes for version 0.19 (2025-08-05)
 - Documentation
     - Removed the separate INSTALL file.
     - Fixed the CONTRIBUTORS setion of the README.
+    - Added CONTRIBUTING.md file.
 
 See the `Changes` file for more details.
 
