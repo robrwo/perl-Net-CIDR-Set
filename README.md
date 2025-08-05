@@ -40,6 +40,7 @@ the first data that is added to it.
 Changes for version 0.19 (2025-08-05)
 
 - Documentation
+    - Fixed typos in documentation RT#168697 (thanks Thomas Eckardt).
     - Removed the separate INSTALL file.
     - Fixed the CONTRIBUTORS setion of the README.
     - Added CONTRIBUTING.md file.
@@ -126,6 +127,7 @@ The encode and decode routines were stolen en masse from Douglas Wilson's [Net::
 
 # CONTRIBUTORS
 
+- Thomas Eckardt <Thomas.Eckardt@thockar.com>
 - Brian Gottreu <gottreu@cpan.org>
 - Robert Rothenberg <rrwo@cpan.org>
 - Stig Palmquist <stigtsp@cpan.org>

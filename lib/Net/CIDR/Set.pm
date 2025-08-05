@@ -323,17 +323,17 @@ A synonym for C<contains_all>.
 Return true if the set contains all of the supplied addresses.
 Given this set:
 
-  my $set = Net::CIDR::Set->new('244.188.12.0/8');
+  my $set = Net::CIDR::Set->new('244.188.12.0/12');
 
 this condition is true:
 
-  if ( $set->contains_all('244.188.12.128/3') ) {
+  if ( $set->contains_all('244.188.12.128/32') ) {
     # ...
   }
 
 while this condition is false:
 
-  if ( $set->contains_all('244.188.12.0/12') ) {
+  if ( $set->contains_all('244.188.12.0/8') ) {
     # ...
   }
 
