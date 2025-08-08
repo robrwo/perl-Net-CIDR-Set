@@ -42,6 +42,7 @@ Changes for version 0.20 (2025-08-08)
 - Documentation
     - Mentioned CONTRIBUTING.md in SOURCE.
 - Tests
+    - Added and improved author tests.
     - Moved author tests into xt.
 - Toolchain
     - Set up GitHub workflow for testing.

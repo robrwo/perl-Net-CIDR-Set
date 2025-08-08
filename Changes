@@ -5,6 +5,8 @@ Revision history for {{$dist->name}}
   - Mentioned CONTRIBUTING.md in SOURCE.
 
   [Tests]
+  - Added and improved author tests.
+
   - Moved author tests into xt.
 
   [Toolchain]
