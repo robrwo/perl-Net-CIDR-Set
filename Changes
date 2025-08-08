@@ -7,6 +7,9 @@ Revision history for {{$dist->name}}
   [Tests]
   - Moved author tests into xt.
 
+  [Toolchain]
+  - Set up GitHub workflow for testing.
+
 0.19      2025-08-05 13:11:19+01:00 Europe/London
   [Documentation]
   - Fixed typos in documentation RT#168697 (thanks Thomas Eckardt).
