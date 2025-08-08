@@ -7,6 +7,7 @@ use Carp;
 use namespace::autoclean;
 
 # ABSTRACT: Encode / decode IPv6 addresses
+# AUTHORITY
 
 our $VERSION = '0.20';
 

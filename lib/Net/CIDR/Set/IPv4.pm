@@ -7,6 +7,7 @@ use Carp;
 use namespace::autoclean;
 
 # ABSTRACT: Encode / decode IPv4 addresses
+# AUTHORITY
 
 our $VERSION = '0.20';
 
