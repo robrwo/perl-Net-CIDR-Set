@@ -4,6 +4,9 @@ Revision history for {{$dist->name}}
   [Documentation]
   - Mentioned CONTRIBUTING.md in SOURCE.
 
+  [Tests]
+  - Moved author tests into xt.
+
 0.19      2025-08-05 13:11:19+01:00 Europe/London
   [Documentation]
   - Fixed typos in documentation RT#168697 (thanks Thomas Eckardt).

@@ -37,10 +37,12 @@ the first data that is added to it.
 
 # RECENT CHANGES
 
-Changes for version 0.20 (2025-08-05)
+Changes for version 0.20 (2025-08-08)
 
 - Documentation
     - Mentioned CONTRIBUTING.md in SOURCE.
+- Tests
+    - Moved author tests into xt.
 
 See the `Changes` file for more details.
 
