@@ -1,10 +1,9 @@
 package Net::CIDR::Set;
 
+# ABSTRACT: Manipulate sets of IP addresses
+
 use v5.14;
 use warnings;
-
-# ABSTRACT: Manipulate sets of IP addresses
-# AUTHORITY
 
 use Carp qw( croak confess );
 use Net::CIDR::Set::IPv4;
