@@ -37,7 +37,7 @@ the first data that is added to it.
 
 # RECENT CHANGES
 
-Changes for version 0.20 (2025-08-08)
+Changes for version 0.20 (2025-08-10)
 
 - Documentation
     - Mentioned CONTRIBUTING.md in SOURCE.
